@@ -14,13 +14,21 @@ export default class Player extends Phaser.GameObjects.Sprite {
     });
 
     // Set the origin point of the sprite to the center of the sprite, so when selecting a point to render the player in a Scene, the point you pick will render the sprite there at its center most pixel.
-    this.setOrigin(0, 0);
+    this.setOrigin(0,0);
+
+    // Add a new Rectangle the same size as the sprite that is assigned to 'hitbox' to track hits on the player.
+    this.hitbox = new Phaser.GameObjects.Rectangle(scene, x, y, 32, 32);
+    this.hitbox.setOrigin(-0.5,-0.5)
+    scene.add.existing(this.hitbox);
+    scene.physics.world.enable(this.hitbox);
   }
 
   // Add an update method for player game events
   update() {
+    this.hitbox.setPosition(this.x, this.y)
+
     if (this.cursors.up.isDown) {
-      console.log("up");
+      console.log("up"); 
       this.y -= 1;
     } else if (this.cursors.down.isDown) {
       console.log("down");

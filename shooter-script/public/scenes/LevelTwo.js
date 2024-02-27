@@ -14,6 +14,8 @@ export default class LevelTwo extends Phaser.Scene {
 
   create() {
     this.player = new Player(this, 400,  300, 'playerSpriteImage')
+
+    this.cameras.main.setBackgroundColor('#808080');
   }
 
   update() {
