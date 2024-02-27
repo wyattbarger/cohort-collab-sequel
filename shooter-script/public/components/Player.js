@@ -12,22 +12,25 @@ export default class Player extends Phaser.GameObjects.Sprite {
       left: Phaser.Input.Keyboard.KeyCodes.A,
       right: Phaser.Input.Keyboard.KeyCodes.D,
     });
+
+    // Set the origin point of the sprite to the center of the sprite, so when selecting a point to render the player in a Scene, the point you pick will render the sprite there at its center most pixel.
+    this.setOrigin(0, 0);
   }
 
   // Add an update method for player game events
   update() {
-    if (this.cursors.is.up) {
-        this.y += 1;
-    }
-    else if (this.cursors.is.down) {
-        this.y -= 1;
-    }
-    else if (this.cursors.is.left) {
-        this.x -= 1;
-    }
-    else if (this.cursors.is.right) {
-        this.x += 1;
+    if (this.cursors.up.isDown) {
+      console.log("up");
+      this.y -= 1;
+    } else if (this.cursors.down.isDown) {
+      console.log("down");
+      this.y += 1;
+    } else if (this.cursors.left.isDown) {
+      console.log("left");
+      this.x -= 1;
+    } else if (this.cursors.right.isDown) {
+      console.log("right");
+      this.x += 1;
     }
   }
-
 }
