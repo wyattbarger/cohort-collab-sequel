@@ -27,18 +27,34 @@ export default class Player extends Phaser.GameObjects.Sprite {
   update() {
     this.hitbox.setPosition(this.x, this.y)
 
+    // Set WASD movement controls
     if (this.cursors.up.isDown) {
       console.log("up"); 
-      this.y -= 1;
+      this.y -= 2;
     } else if (this.cursors.down.isDown) {
       console.log("down");
-      this.y += 1;
+      this.y += 2;
     } else if (this.cursors.left.isDown) {
       console.log("left");
-      this.x -= 1;
+      this.x -= 2;
     } else if (this.cursors.right.isDown) {
       console.log("right");
-      this.x += 1;
+      this.x += 2;
+    }
+     
+    // Set diagonal movement controls
+    if (this.cursors.up.isDown && this.cursors.left.isDown) {
+        this.x -= 1;
+        this.y -= 1;
+    } else if (this.cursors.up.isDown && this.cursors.right.isDown) {
+        this.x += 1;
+        this.y -= 1;
+    } else if (this.cursors.down.isDown && this.cursors.left.isDown) {
+        this.x -= 1;
+        this.y += 1;
+    } else if (this.cursors.down.isDown && this.cursors.right.isDown) {
+        this.x += 1;
+        this.y += 1;
     }
   }
 }
