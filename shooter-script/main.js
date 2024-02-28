@@ -10,13 +10,13 @@ export default new Phaser.Game({
   height: 600,
   scene: [Title, LevelOne, LevelTwo],
   physics: {
-    default: 'arcade',
-    arcade : {
+    default: "arcade",
+    arcade: {
       debug: {
         showBounds: true,
         showColliders: true,
         showVelocity: true,
-      }
-    }
-  }
+      },
+    },
+  },
 });
