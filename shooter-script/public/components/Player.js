@@ -1,10 +1,13 @@
 import Phaser from "phaser";
 import DefaultWeapon from "./DefaultWeapon";
 
-export default class Player extends Phaser.GameObjects.Sprite {
+export default class Player extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y) {
     super(scene, x, y, "playerSpriteImage");
     scene.add.existing(this);
+
+    // Enable arcade physics for the player
+    scene.physics.world.enable(this);
 
     // Set the custom controls scheme for the Player class
     this.cursors = scene.input.keyboard.addKeys({
@@ -40,6 +43,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.hitbox.setOrigin(-0.5, -0.5);
     scene.add.existing(this.hitbox);
     scene.physics.world.enable(this.hitbox);
+
+    this.setCollideWorldBounds(true);
   }
 
   // Add an update method for player game events
