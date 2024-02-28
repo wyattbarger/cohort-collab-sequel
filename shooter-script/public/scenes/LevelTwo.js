@@ -1,16 +1,22 @@
 import Phaser from 'phaser';
+import Player from '../components/Player.js';
+import heroSprite from '../assets/images/hero/ufo-hero.png'
 
 export default class LevelTwo extends Phaser.Scene {
+
   constructor() {
     super('LevelTwo');
   }
 
-  create() {
-    this.add.text(100, 100, 'Level Two', { fill: '#0f0' });
-    this.add.text(100, 200, 'Press Space to go to Level 3', { fill: '#0f0' });
+  preload() {
+    this.load.image('playerSpriteImage', heroSprite)
+  }
 
-    this.input.keyboard.once('keydown-SPACE', () => {
-      this.scene.start('Title');
-    });
+  create() {
+    this.player = new Player(this, 400,  300, 'playerSpriteImage')
+  }
+
+  update() {
+    this.player.update();
   }
 }
