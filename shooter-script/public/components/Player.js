@@ -5,12 +5,20 @@ export default class Player extends Phaser.GameObjects.Sprite {
     super(scene, x, y, "playerSpriteImage");
     scene.add.existing(this);
 
-    // Set the custom controls for the Player class
+    // Set the custom controls scheme for the Player class
     this.cursors = scene.input.keyboard.addKeys({
       up: Phaser.Input.Keyboard.KeyCodes.W,
       down: Phaser.Input.Keyboard.KeyCodes.S,
       left: Phaser.Input.Keyboard.KeyCodes.A,
       right: Phaser.Input.Keyboard.KeyCodes.D,
+    });
+
+    // Set the control scheme to track the players mouse pointer movement within the scene
+    this.mouseCursorX = 0;
+    this.mouseCursorY = 0;
+    scene.input.on('pointermove', (pointer) => {
+      this.mouseCursorX = pointer.x;
+      this.mouseCursorY = pointer.y;
     });
 
     // Set the origin point of the sprite to the center of the sprite, so when selecting a point to render the player in a Scene, the point you pick will render the sprite there at its center most pixel.
@@ -21,7 +29,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.hitbox.setOrigin(-0.5,-0.5)
     scene.add.existing(this.hitbox);
     scene.physics.world.enable(this.hitbox);
-  }
+  };
 
   // Add an update method for player game events
   update() {
@@ -57,4 +65,4 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.y += 1;
     }
   }
-}
+};
