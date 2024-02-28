@@ -13,13 +13,13 @@ export default class DefaultWeapon {
       "defaultMissileF1"
     );
 
-    // Add the physical aspects of the projectile
+    // Add the physical aspects of the projectile and enable its physics
     this.scene.physics.world.enable(projectile);
     this.projectiles.add(projectile);
     projectile.setScale(2);
     projectile.setOrigin(0, 0);
 
-    // Find out the proper angle between the player and the mouse pointer.
+    // Find out the proper angle between the player and the mouse pointer
     const angle = Phaser.Math.Angle.Between(
       this.player.x,
       this.player.y,
