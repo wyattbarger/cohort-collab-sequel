@@ -27,7 +27,7 @@ export default class DefaultWeapon {
       atYCord
     );
 
-    const speed = 50;
+    const speed = 175;
     const velocityX = Math.cos(angle) * speed;
     const velocityY = Math.sin(angle) * speed;
 
