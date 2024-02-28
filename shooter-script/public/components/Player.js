@@ -13,12 +13,18 @@ export default class Player extends Phaser.GameObjects.Sprite {
       right: Phaser.Input.Keyboard.KeyCodes.D,
     });
 
-    // Set the control scheme to track the players mouse pointer movement within the scene
+    // Set the control scheme for the players mouse
     this.mouseCursorX = 0;
     this.mouseCursorY = 0;
+    // Track pointer movement input type
     scene.input.on('pointermove', (pointer) => {
       this.mouseCursorX = pointer.x;
       this.mouseCursorY = pointer.y;
+    });
+    // Track leftButtonDown input type
+    scene.input.on('pointerdown', (pointer) => {
+      if (pointer.leftButtonDown()) {
+      }
     });
 
     // Set the origin point of the sprite to the center of the sprite, so when selecting a point to render the player in a Scene, the point you pick will render the sprite there at its center most pixel.
@@ -37,16 +43,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     // Set WASD movement controls
     if (this.cursors.up.isDown) {
-      console.log("up"); 
       this.y -= 2;
     } else if (this.cursors.down.isDown) {
-      console.log("down");
       this.y += 2;
     } else if (this.cursors.left.isDown) {
-      console.log("left");
       this.x -= 2;
     } else if (this.cursors.right.isDown) {
-      console.log("right");
       this.x += 2;
     }
      
