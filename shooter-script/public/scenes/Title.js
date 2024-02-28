@@ -2,22 +2,28 @@ import Phaser from 'phaser';
 
 export default class Title extends Phaser.Scene {
   constructor() {
-    super('Title');
+    super({key:'Title'});
+  }
+
+  preload() {
+    this.load.image('background', 'assets/images/background.png')
   }
 
   create() {
-    this.add.text(350, 200, 'Game', { fill: '#0f0', fontSize: 48, shadow: '2px 2px #000' })
-    const startButton = this.add.text(300, 400, 'Click to Start!', { fill: '#0f0' })
+    const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
+    const screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
+    
+    var bg = this.add.sprite(0, 0, 'background');
+    bg.setOrigin(0, 0);
+
+    this.add.text(screenCenterX, screenCenterY, 'This is a Story, \n about a Game', { fill: '#fff', fontSize: 48, fontFamily: 'arial', fontStyle: 'bold', }).setOrigin(0.5, 1);
+    const startButton = this.add.text(screenCenterX, screenCenterY, 'Click to Start!', { fill: '#f5ad42', fontFamily: 'monospace', fontSize: 30 }).setOrigin(0.5, -3);
 
     startButton.setInteractive()
     .on('pointerdown', () => { this.scene.start('LevelOne');})
     .on('pointerover', () => { startButton.setStyle({ fill: '#ff0'}); })
-    .on('pointerout', () => { startButton.setStyle({ fill: '#0f0'}); });
+    .on('pointerout', () => { startButton.setStyle({ fill: '#f5ad42'}); });
 
 
-    //remove when start button has functionality
-    // this.input.keyboard.once('keydown-SPACE', () => {
-    //   this.scene.start('LevelOne');
-    // });
   }
 }
