@@ -6,17 +6,17 @@ import LevelTwo from "/public/scenes/LevelTwo";
 
 export default new Phaser.Game({
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
+  width: 1280,
+  height: 720,
   scene: [Title, LevelOne, LevelTwo],
   physics: {
-    default: 'arcade',
-    arcade : {
-      debug: {
-        showBounds: true,
-        showColliders: true,
-        showVelocity: true,
-      }
-    }
-  }
+    default: "arcade",
+    arcade: {
+      // debug: {
+      //   showBounds: true,
+      //   showColliders: true,
+      //   showVelocity: true,
+      // },
+    },
+  },
 });
