@@ -15,6 +15,7 @@ export default class DefaultWeapon {
 
     // Add the physical aspects of the projectile and enable its physics
     this.scene.physics.world.enable(projectile);
+    projectile.body.setSize(4, 4)
     this.projectiles.add(projectile);
     projectile.setScale(2);
     projectile.setOrigin(0, 0);
