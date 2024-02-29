@@ -12,11 +12,11 @@ export default new Phaser.Game({
   physics: {
     default: "arcade",
     arcade: {
-      debug: {
-        showBounds: true,
-        showColliders: true,
-        showVelocity: true,
-      },
+      // debug: {
+      //   showBounds: true,
+      //   showColliders: true,
+      //   showVelocity: true,
+      // },
     },
   },
 });

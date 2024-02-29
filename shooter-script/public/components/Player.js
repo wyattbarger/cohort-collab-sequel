@@ -53,28 +53,28 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     // Set WASD movement controls
     if (this.cursors.up.isDown) {
-      this.y -= 2;
+      this.y -= 4;
     } else if (this.cursors.down.isDown) {
-      this.y += 2;
+      this.y += 4;
     } else if (this.cursors.left.isDown) {
-      this.x -= 2;
+      this.x -= 4;
     } else if (this.cursors.right.isDown) {
-      this.x += 2;
+      this.x += 4;
     }
 
     // Set diagonal movement controls
     if (this.cursors.up.isDown && this.cursors.left.isDown) {
-      this.x -= 1;
-      this.y -= 1;
+      this.x -= 2;
+      this.y -= 2;
     } else if (this.cursors.up.isDown && this.cursors.right.isDown) {
-      this.x += 1;
-      this.y -= 1;
+      this.x += 2;
+      this.y -= 2;
     } else if (this.cursors.down.isDown && this.cursors.left.isDown) {
-      this.x -= 1;
-      this.y += 1;
+      this.x -= 2;
+      this.y += 2;
     } else if (this.cursors.down.isDown && this.cursors.right.isDown) {
-      this.x += 1;
-      this.y += 1;
+      this.x += 2;
+      this.y += 2;
     }
   }
 }

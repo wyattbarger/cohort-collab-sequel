@@ -10,8 +10,28 @@ export default class DefaultWeapon {
     const projectile = this.scene.physics.add.sprite(
       this.player.x,
       this.player.y,
-      "defaultMissileF1"
+      "firstProjectileSprite"
     );
+
+    // Create an animation loop
+    this.scene.anims.create({
+      key: "projectileAnimation",
+      frames: [
+        { key: "firstProjectileSprite" },
+        { key: "secondProjectileSprite" },
+        { key: "thirdProjectileSprite" },
+        { key: "fourthProjectileSprite" },
+        { key: "fifthProjectileSprite" },
+        { key: "sixthProjectileSprite" },
+        { key: "seventhProjectileSprite" },
+        { key: "eighthProjectileSprite" },
+      ],
+      frameRate: 10, 
+      repeat: -1, 
+    });
+
+    // Start the above projectile animation loop    
+    projectile.anims.play("projectileAnimation");
 
     // Add the physical aspects of the projectile and enable its physics
     this.scene.physics.world.enable(projectile);
@@ -28,7 +48,7 @@ export default class DefaultWeapon {
       atYCord
     );
 
-    const speed = 175;
+    const speed = 225;
     const velocityX = Math.cos(angle) * speed;
     const velocityY = Math.sin(angle) * speed;
 
