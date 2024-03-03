@@ -8,15 +8,18 @@ export default new Phaser.Game({
   type: Phaser.AUTO,
   width: 1280,
   height: 720,
-  scene: [Title, LevelOne, LevelTwo],
+  scene: [
+    Title, 
+    LevelOne, 
+    LevelTwo],
   physics: {
     default: "arcade",
     arcade: {
-      // debug: {
-      //   showBounds: true,
-      //   showColliders: true,
-      //   showVelocity: true,
-      // },
+      debug: {
+        showBounds: true,
+        showColliders: true,
+        showVelocity: true,
+      },
     },
   },
 });
