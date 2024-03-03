@@ -2,10 +2,23 @@ export default class DefaultWeapon {
   constructor(scene, player) {
     this.scene = scene;
     this.player = player;
+    this.fireRate = 750;
+    this.abilToFire = true;
     this.projectiles = scene.physics.add.group();
   }
 
   fire = (atXCord, atYCord) => {
+    // Stop the user from firing if the interval is not met
+    if (!this.abilToFire) {
+      return;
+    }
+
+    // Set the abilToFire property to false, and then run a setTimeout function that sets abilToFire to true after the duration of fireRate
+    this.abilToFire = false;
+    setTimeout(() => {
+      this.abilToFire = true;
+    }, this.fireRate);
+
     // Create a projectile as a sprite when the fire method is hit
     const projectile = this.scene.physics.add.sprite(
       this.player.x,
@@ -48,6 +61,7 @@ export default class DefaultWeapon {
       atYCord
     );
 
+    // Set the speed and target of the projectile 
     const speed = 225;
     const velocityX = Math.cos(angle) * speed;
     const velocityY = Math.sin(angle) * speed;
