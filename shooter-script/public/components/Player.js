@@ -56,7 +56,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     if (this.hitpoints < 0) {
       this.hitpoints = 0; // Prevent negative health values
     } else if  (this.hitpoints === 0) {
-      this.scene.start("Gameover"); // If hitpoints value is zero trigger the "Gameover" scene
+      this.scene.start("GameOver"); // If hitpoints value is zero trigger the "Gameover" scene
     }
   };
 
