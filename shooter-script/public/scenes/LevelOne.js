@@ -2,7 +2,7 @@ import Phaser from "phaser";
 import Player from "../components/Player.js";
 import Enemy from "../components/Enemy.js";
 import heroSprite from "../assets/images/hero/ufo-hero.png";
-import skullSprite from "../assets/images/enemies/Skull.png";
+import skullSprite from "../assets/images/enemies/Skull-Cent-1.png";
 import defaultMissileF1 from "../assets/images/missiles/leveltwo/default-weapon/lvl2-defwep-missile-f1.png";
 import defaultMissileF2 from "../assets/images/missiles/leveltwo/default-weapon/lvl2-defwep-missile-f2.png";
 import defaultMissileF3 from "../assets/images/missiles/leveltwo/default-weapon/lvl2-defwep-missile-f3.png";
@@ -40,6 +40,6 @@ export default class LevelTwo extends Phaser.Scene {
   update() {
     this.player.update();
     this.enemy.update();
-    this.physics.moveToObject(this.enemy, this.player, 100);
+    this.physics.moveToObject(this.enemy, this.player, 90);
   }
 }

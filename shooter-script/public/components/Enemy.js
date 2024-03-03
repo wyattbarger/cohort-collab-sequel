@@ -11,7 +11,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     // Enable arcade physics for the Enemy class
     scene.physics.world.enable(this);
     // Set the origin point of the sprite to the center of the sprite, so when selecting a point to render the enemy in a Scene, the point you pick will render the sprite there at its center most pixel.
-    this.setOrigin(0.35, 0.3);
+    this.setOrigin(0.35, 0.35);
     // Set the collision bounds for the enemy
     this.setCollideWorldBounds(true);
 
@@ -21,7 +21,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     // scene.add.existing(this.hitbox);
     // scene.physics.world.enable(this.hitbox);
     this.setSize(70, 80);
-    this.setOffset(80, 58)
+    this.setOffset(76, 70)
     
   }
   
