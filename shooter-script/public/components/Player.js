@@ -20,6 +20,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     // Add the DefaultWeapon class to the Player, passing the scene and this Player class to the DefaultWeapons class constructor
     this.startingWeapon = new DefaultWeapon(scene, this);
 
+    // Set a property of the Player class "hitpoints" to 3
+    this.hitpoints = 3;
+
     // Set the control scheme for the players mouse
     this.mouseCursorX = 0;
     this.mouseCursorY = 0;
@@ -45,7 +48,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     scene.physics.world.enable(this.hitbox);
 
     this.setCollideWorldBounds(true);
-  }
+  };
+
+  // Set a takeDamage with an amount parameter
+  takeDamage(amount) {
+    this.hitpoints -= amount;
+  }; 
 
   // Add an update method for player game events
   update() {
@@ -60,7 +68,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       this.x -= 4;
     } else if (this.cursors.right.isDown) {
       this.x += 4;
-    }
+    };
 
     // Set diagonal movement controls
     if (this.cursors.up.isDown && this.cursors.left.isDown) {
@@ -75,6 +83,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     } else if (this.cursors.down.isDown && this.cursors.right.isDown) {
       this.x += 2;
       this.y += 2;
-    }
+    };
   }
 }
