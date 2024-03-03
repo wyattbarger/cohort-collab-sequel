@@ -53,7 +53,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   // Set a takeDamage with an amount parameter
   takeDamage(amount) {
     this.hitpoints -= amount;
-  }; 
+    if (this.hitpoints < 0) {
+      this.hitpoints = 0; // Prevent negative health values
+    } else if  (this.hitpoints === 0) {
+      this.scene.start("Gameover"); // If hitpoints value is zero trigger the "Gameover" scene
+    }
+  };
 
   // Add an update method for player game events
   update() {
