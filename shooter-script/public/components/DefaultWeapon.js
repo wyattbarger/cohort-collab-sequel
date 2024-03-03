@@ -13,7 +13,7 @@ export default class DefaultWeapon {
       return;
     }
 
-    //
+    // Set the abilToFire property to false, and then run a setTimeout function that sets abilToFire to true after the duration of fireRate
     this.abilToFire = false;
     setTimeout(() => {
       this.abilToFire = true;
