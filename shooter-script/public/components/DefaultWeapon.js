@@ -39,16 +39,16 @@ export default class DefaultWeapon {
         { key: "seventhProjectileSprite" },
         { key: "eighthProjectileSprite" },
       ],
-      frameRate: 10, 
-      repeat: -1, 
+      frameRate: 10,
+      repeat: -1,
     });
 
-    // Start the above projectile animation loop    
+    // Start the above projectile animation loop
     projectile.anims.play("projectileAnimation");
 
     // Add the physical aspects of the projectile and enable its physics
     this.scene.physics.world.enable(projectile);
-    projectile.body.setSize(4, 4)
+    projectile.body.setSize(4, 4);
     this.projectiles.add(projectile);
     projectile.setScale(2);
     projectile.setOrigin(0, 0);
@@ -61,7 +61,7 @@ export default class DefaultWeapon {
       atYCord
     );
 
-    // Set the speed and target of the projectile 
+    // Set the speed and target of the projectile
     const speed = 225;
     const velocityX = Math.cos(angle) * speed;
     const velocityY = Math.sin(angle) * speed;
