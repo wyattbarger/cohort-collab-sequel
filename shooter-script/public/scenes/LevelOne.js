@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 import Player from "../components/Player.js";
-import Enemy from "../components/Enemy.js";
+import SkullEnemy from "../components/Skull.js";
 import Skull2 from "../components/SkullTier2.js";
 import heroSprite from "../assets/images/hero/ufo-hero.png";
 import skullSprite from "../assets/images/enemies/Skull-Cent-1.png";
@@ -34,7 +34,6 @@ export default class LevelTwo extends Phaser.Scene {
     this.load.image("seventhProjectileSprite", defaultMissileF7);
     this.load.image("eighthProjectileSprite", defaultMissileF8);
     this.load.image("skullSpriteImage", skullSprite);
-    // this.load.image("skullTier2Image", skullTier2);
     this.load.image("skull2-1", flameAnim1);
     this.load.image("skull2-2", flameAnim2);
     this.load.image("skull2-3", flameAnim3);
@@ -44,7 +43,7 @@ export default class LevelTwo extends Phaser.Scene {
 
   create() {
     this.player = new Player(this, 400, 300, "playerSpriteImage");
-    this.enemy = new Enemy(this, 100, 300, "skullSpriteImage");
+    this.skull = new SkullEnemy(this, 100, 300, "skullSpriteImage");
     this.skull2 = new Skull2(this, 200, 300, "skullSpriteImage");
     
   }
@@ -52,8 +51,9 @@ export default class LevelTwo extends Phaser.Scene {
 
   update() {
     this.player.update();
-    this.enemy.update();
-    this.physics.moveToObject(this.enemy, this.player, 80);
+    this.skull.update();
+    this.skull2.update();
+    this.physics.moveToObject(this.skull, this.player, 80);
     this.physics.moveToObject(this.skull2, this.player, 100);
   }
 }
