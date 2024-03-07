@@ -22,9 +22,15 @@ export default class Lvl2MeleeEnemy extends Enemy {
     });
     this.anims.play("movementAnimation")
 
+    this.hitbox = new Phaser.GameObjects.Rectangle(scene, x, y, 76, 76);
+    this.hitbox.setOrigin(.5, .5);
+    scene.add.existing(this.hitbox);
+    scene.physics.world.enable(this.hitbox);
+
     this.setCollideWorldBounds(true);
   };
   update () {
+    this.hitbox.setPosition(this.x, this.y);
     this.scene.physics.moveToObject(this, this.scene.player, 80);
   };
 }
