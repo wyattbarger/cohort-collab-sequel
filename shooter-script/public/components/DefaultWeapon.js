@@ -5,19 +5,40 @@ export default class DefaultWeapon {
     this.fireRate = 750;
     this.abilToFire = true;
     this.projectiles = scene.physics.add.group();
+    this.initAnimations();
+  }
+
+  // Add initAnimations function to prevent a new animation from being created everytime fire() is hit
+  initAnimations() {
+    if (!this.scene.anims.exists("projectileAnimation")) {
+      this.scene.anims.create({
+        key: "projectileAnimation",
+        frames: [
+          { key: "firstProjectileSprite" },
+          { key: "secondProjectileSprite" },
+          { key: "thirdProjectileSprite" },
+          { key: "fourthProjectileSprite" },
+          { key: "fifthProjectileSprite" },
+          { key: "sixthProjectileSprite" },
+          { key: "seventhProjectileSprite" },
+          { key: "eighthProjectileSprite" },
+        ],
+        frameRate: 10,
+        repeat: -1,
+      });
+    }
   }
 
   fire = (atXCord, atYCord) => {
-    // Stop the user from firing if the interval is not met
     if (!this.abilToFire) {
       return;
     }
 
-    // Set the abilToFire property to false, and then run a setTimeout function that sets abilToFire to true after the duration of fireRate
+    // Set the abilToFire property to false, and then use scene's time module to handle fire rate
     this.abilToFire = false;
-    setTimeout(() => {
+    this.scene.time.delayedCall(this.fireRate, () => {
       this.abilToFire = true;
-    }, this.fireRate);
+    });
 
     // Create a projectile as a sprite when the fire method is hit
     const projectile = this.scene.physics.add.sprite(
@@ -25,23 +46,6 @@ export default class DefaultWeapon {
       this.player.y,
       "firstProjectileSprite"
     );
-
-    // Create an animation loop
-    this.scene.anims.create({
-      key: "projectileAnimation",
-      frames: [
-        { key: "firstProjectileSprite" },
-        { key: "secondProjectileSprite" },
-        { key: "thirdProjectileSprite" },
-        { key: "fourthProjectileSprite" },
-        { key: "fifthProjectileSprite" },
-        { key: "sixthProjectileSprite" },
-        { key: "seventhProjectileSprite" },
-        { key: "eighthProjectileSprite" },
-      ],
-      frameRate: 10,
-      repeat: -1,
-    });
 
     // Start the above projectile animation loop
     projectile.anims.play("projectileAnimation");
@@ -61,7 +65,7 @@ export default class DefaultWeapon {
       atYCord
     );
 
-    // Set the speed and target of the projectile
+    // Set the speed of the projectile, and the target as the mouse cursor
     const speed = 225;
     const velocityX = Math.cos(angle) * speed;
     const velocityY = Math.sin(angle) * speed;

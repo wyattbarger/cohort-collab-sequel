@@ -35,7 +35,7 @@ export default class Lvl2MeleeEnemy extends Enemy {
 
     // Add a collider between the hitbox and the Player's startingWeapon.projectiles
     this.scene.physics.add.collider(
-      this.scene.player.startingWeapon.projectiles,
+      this.scene.player.startingWeapon.projectile,
       this.hitbox,
       this.playerProjectileCollisionHandler,
       null,
