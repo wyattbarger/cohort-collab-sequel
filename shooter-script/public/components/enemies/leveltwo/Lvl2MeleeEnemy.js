@@ -22,11 +22,11 @@ export default class Lvl2MeleeEnemy extends Enemy {
       frameRate: 10,
       repeat: -1,
     });
-    this.anims.play("movementAnimation");
+    this.anims.play("movementAnimation")
 
     // Add a new hitbox synchronized to the center of the Lvl2MeleeEnemy
     this.hitbox = new Phaser.GameObjects.Rectangle(scene, x, y, 76, 76);
-    this.hitbox.setOrigin(0.5, 0.5);
+    this.hitbox.setOrigin(.5, .5);
     scene.add.existing(this.hitbox);
     scene.physics.world.enable(this.hitbox);
 
@@ -35,15 +35,15 @@ export default class Lvl2MeleeEnemy extends Enemy {
 
     // Add a collider between the hitbox and the Player's startingWeapon.projectiles
     this.scene.physics.add.collider(
-      this.scene.player.startingWeapon.projectile,
-      this.hitbox,
-      this.playerProjectileCollisionHandler,
-      null,
-      this
-    );
-  }
+        this.scene.player.startingWeapon.projectiles,
+        this.hitbox,
+        this.playerProjectileCollisionHandler,
+        null,
+        this, 
+     );
+  };
   // Add a function to deal one damage when hit by the starting weapon projectile
-  playerProjectileCollisionHandler() {
+  playerProjectileCollisionHandler () {
     this.takeDamage(1);
   }
 
@@ -53,17 +53,17 @@ export default class Lvl2MeleeEnemy extends Enemy {
     if (this.hitpoints < 0) {
       this.hitpoints = 0; // Prevent negative hitpoints values
       this.isDestroyed = true;
-    } else if (this.hitpoints === 0) {
+    } else if  (this.hitpoints === 0) {
       this.hitbox.destroy(); // Destroy hitbox at 0 hitpoints
       this.destroy(); // Destroy this Sprite at 0 hitpoints
     }
-  }
+  };
 
-  update() {
+  update () {
     // Only execute this code if the scene is defined, and the Enemy has not been destroyed by the player
-    if (this.scene && !this.isDestroyed) {
-      this.hitbox.setPosition(this.x, this.y);
-      this.scene.physics.moveToObject(this, this.scene.player, 80);
+    if (this.scene && !this.isDestroyed) { 
+    this.hitbox.setPosition(this.x, this.y);
+    this.scene.physics.moveToObject(this, this.scene.player, 80);
     }
-  }
+  };
 }

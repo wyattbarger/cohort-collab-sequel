@@ -7,7 +7,7 @@ export default class DefaultWeapon {
     this.projectiles = scene.physics.add.group();
     this.initAnimations();
   }
-
+  
   // Add initAnimations function to prevent a new animation from being created everytime fire() is hit
   initAnimations() {
     if (!this.scene.anims.exists("projectileAnimation")) {
@@ -65,7 +65,7 @@ export default class DefaultWeapon {
       atYCord
     );
 
-    // Set the speed of the projectile, and the target as the mouse cursor
+    // Set the speed of the projectile, and the target as the mouse
     const speed = 225;
     const velocityX = Math.cos(angle) * speed;
     const velocityY = Math.sin(angle) * speed;
