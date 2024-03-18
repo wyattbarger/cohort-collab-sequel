@@ -47,5 +47,9 @@ export default class HealthBar extends Phaser.Arcade.Sprite {
     this.scene.anims.get("dmg1To0").onComplete.addListener(() => {
       this.sprite.setTexture("zeroPointHpBar");
     });
-  }
+  };
+  
+  update () {
+
+  };
 }

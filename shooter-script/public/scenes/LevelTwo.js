@@ -17,6 +17,7 @@ import meleeEnemyF4 from "../assets/images/enemies/leveltwo/melee/lvl2-melee-ene
 import meleeEnemyF5 from "../assets/images/enemies/leveltwo/melee/lvl2-melee-enemy-f5.png";
 import meleeEnemyF6 from "../assets/images/enemies/leveltwo/melee/lvl2-melee-enemy-f6.png";
 import meleeEnemyF7 from "../assets/images/enemies/leveltwo/melee/lvl2-melee-enemy-f7.png";
+import HealthBar from "../components/HealthBar.js";
 
 export default class LevelTwo extends Phaser.Scene {
   constructor() {
@@ -53,10 +54,14 @@ export default class LevelTwo extends Phaser.Scene {
 
     // Add the Lvl2MeleeEnemy to the scene
     this.meleeEnemy = new Lvl2MeleeEnemy(this, 900, 600, "meleeEnemySprite");
+
+    // Add the HealthBar to the scene
+    this.hitpointsBar = new HealthBar (this);
   }
 
   update() {
     this.player.update();
     this.meleeEnemy.update();
+    this.hitpointsBar.update();
   }
 }
