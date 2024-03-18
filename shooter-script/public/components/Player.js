@@ -10,7 +10,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     scene.physics.world.enable(this);
 
     // Set boundaries so the player cannot be in the top area of the canvas storing game information
-    scene.physics.world.setBounds(0, 65, 1280, 660);
+    scene.physics.world.setBounds(0, 65, 1280, 670);
 
     // Set the custom controls scheme for the Player class
     this.cursors = scene.input.keyboard.addKeys({
