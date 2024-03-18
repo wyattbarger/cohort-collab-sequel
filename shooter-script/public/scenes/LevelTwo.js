@@ -17,6 +17,17 @@ import meleeEnemyF4 from "../assets/images/enemies/leveltwo/melee/lvl2-melee-ene
 import meleeEnemyF5 from "../assets/images/enemies/leveltwo/melee/lvl2-melee-enemy-f5.png";
 import meleeEnemyF6 from "../assets/images/enemies/leveltwo/melee/lvl2-melee-enemy-f6.png";
 import meleeEnemyF7 from "../assets/images/enemies/leveltwo/melee/lvl2-melee-enemy-f7.png";
+import HealthBar from "../components/HealthBar.js";
+import hpBarValue0 from "../assets/images/hero/hitpoints-bar/hpbar-value0-static.png";
+import hpBarValue1 from "../assets/images/hero/hitpoints-bar/hpbar-value1-static.png";
+import hpBarValue2 from "../assets/images/hero/hitpoints-bar/hpbar-value2-static.png";
+import hpBarValue3 from "../assets/images/hero/hitpoints-bar/hpbar-value3-static.png"
+import hpBarValue3to2F1 from "../assets/images/hero/hitpoints-bar/hpbar-value3to2-f1.png";
+import hpBarValue3to2F2 from "../assets/images/hero/hitpoints-bar/hpbar-value3to2-f2.png";
+import hpBarValue2to1F1 from "../assets/images/hero/hitpoints-bar/hpbar-value2to1-f1.png";
+import hpBarValue2to1F2 from "../assets/images/hero/hitpoints-bar/hpbar-value2to1-f2.png";
+import hpBarValue1to0F1 from "../assets/images/hero/hitpoints-bar/hpbar-value1to0-f1.png";
+import hpBarValue1to0F2 from "../assets/images/hero/hitpoints-bar/hpbar-value1to0-f2.png";
 
 export default class LevelTwo extends Phaser.Scene {
   constructor() {
@@ -27,7 +38,7 @@ export default class LevelTwo extends Phaser.Scene {
     // Preload the Sprite for the Player
     this.load.image("playerSpriteImage", heroSprite);
 
-    //Preload the Sprites for the Player's DefaultWeapon
+    // Preload the Sprites for the Player's DefaultWeapon
     this.load.image("firstProjectileSprite", defaultMissileF1);
     this.load.image("secondProjectileSprite", defaultMissileF2);
     this.load.image("thirdProjectileSprite", defaultMissileF3);
@@ -37,7 +48,7 @@ export default class LevelTwo extends Phaser.Scene {
     this.load.image("seventhProjectileSprite", defaultMissileF7);
     this.load.image("eighthProjectileSprite", defaultMissileF8);
 
-    //Preload the Sprites for the Lvl2MeleeEnemy
+    // Preload the Sprites for the Lvl2MeleeEnemy
     this.load.image("meleeEnemySprite", meleeEnemyF1);
     this.load.image("secondMoveSprite", meleeEnemyF2);
     this.load.image("thirdMoveSprite", meleeEnemyF3);
@@ -45,6 +56,18 @@ export default class LevelTwo extends Phaser.Scene {
     this.load.image("fifthMoveSprite", meleeEnemyF5);
     this.load.image("sixthMoveSprite", meleeEnemyF6);
     this.load.image("seventhMoveSprite", meleeEnemyF7);
+
+    // Preload the Sprites for the HealthBar
+    this.load.image("zeroPointHpBar", hpBarValue0);
+    this.load.image("onePointHpBar", hpBarValue1);
+    this.load.image("twoPointHpBar", hpBarValue2);
+    this.load.image("threePointHpBar", hpBarValue3);
+    this.load.image("dmg3To2Frame1", hpBarValue3to2F1);
+    this.load.image("dmg3to2Frame2", hpBarValue3to2F2);
+    this.load.image("dmg2To1Frame1", hpBarValue2to1F1);
+    this.load.image("dmg2to1Frame2", hpBarValue2to1F2);
+    this.load.image("dmg1To0Frame1", hpBarValue1to0F1);
+    this.load.image("dmg1To0Frame2", hpBarValue1to0F2);
   }
 
   create() {
@@ -53,10 +76,14 @@ export default class LevelTwo extends Phaser.Scene {
 
     // Add the Lvl2MeleeEnemy to the scene
     this.meleeEnemy = new Lvl2MeleeEnemy(this, 900, 600, "meleeEnemySprite");
+
+    // Add the HealthBar to the scene
+    this.hitpointsBar = new HealthBar (this, "threePointHpBar");
   }
 
   update() {
     this.player.update();
     this.meleeEnemy.update();
+    this.hitpointsBar.update();
   }
 }

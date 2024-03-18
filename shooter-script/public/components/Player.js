@@ -9,6 +9,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     // Enable arcade physics for the player
     scene.physics.world.enable(this);
 
+    // Set boundaries so the player cannot be in the top area of the canvas storing game information
+    scene.physics.world.setBounds(0, 65, 1280, 670);
+
     // Set the custom controls scheme for the Player class
     this.cursors = scene.input.keyboard.addKeys({
       up: Phaser.Input.Keyboard.KeyCodes.W,
@@ -48,17 +51,17 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     scene.physics.world.enable(this.hitbox);
 
     this.setCollideWorldBounds(true);
-  };
+  }
 
   // Set a takeDamage with an amount parameter
   takeDamage(amount) {
     this.hitpoints -= amount;
     if (this.hitpoints < 0) {
       this.hitpoints = 0; // Prevent negative health values
-    } else if  (this.hitpoints === 0) {
+    } else if (this.hitpoints === 0) {
       this.scene.start("GameOver"); // If hitpoints value is zero trigger the "Gameover" scene
     }
-  };
+  }
 
   // Add an update method for player game events
   update() {
@@ -73,7 +76,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       this.x -= 2;
     } else if (this.cursors.right.isDown) {
       this.x += 2;
-    };
+    }
 
     // Set diagonal movement controls
     if (this.cursors.up.isDown && this.cursors.left.isDown) {
@@ -88,6 +91,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     } else if (this.cursors.down.isDown && this.cursors.right.isDown) {
       this.x += 1;
       this.y += 1;
-    };
+    }
   }
 }
