@@ -18,10 +18,10 @@ export default class LevelIndicator extends Phaser.GameObjects.Sprite {
       default:
         textureKey = "levelOneIndicSprite";
         break;
-    }
+    };
     super(scene, 0, 20, textureKey);
     this.setOrigin(0.5, 0.25);
     this.setScale(0.75);
     scene.add.existing(this);
-  }
-}
+  };
+};
