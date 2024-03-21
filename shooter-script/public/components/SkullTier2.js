@@ -23,19 +23,15 @@ export default class Skull2 extends Enemy {
     this.setSize(70, 80);
     this.setOffset(76, 70)
 
-    this.scene.anims.create({
-        key: 'skull2-anim',
-        frames: [
-            {key: 'skull2-1'},
-            {key: 'skull2-2'},
-            {key: 'skull2-3'},
-            {key: 'skull2-4'},
-            {key: 'skull2-5'},
-        ],
-        frameRate: 10,
-        repeat: -1
-        });
-        this.anims.play('skull2-anim');
+
+    this.anims.create({
+      key: 'idle',
+      framerate: 10,
+      frames: this.anims.generateFrameNumbers('skull2', { start: 0, end: 4 }),
+      repeat: -1,
+
+    });       
+    this.anims.play('idle');
   }
   
   update() {
