@@ -10,8 +10,8 @@ export default new Phaser.Game({
   height: 720,
   scene: [
     // Title, 
-    // LevelOne, 
-    LevelTwo
+    LevelOne, 
+    // LevelTwo
   ],
   physics: {
     default: "arcade",
