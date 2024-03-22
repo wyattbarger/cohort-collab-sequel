@@ -28,6 +28,8 @@ import hpBarValue2to1F1 from "../assets/images/hero/hitpoints-bar/hpbar-value2to
 import hpBarValue2to1F2 from "../assets/images/hero/hitpoints-bar/hpbar-value2to1-f2.png";
 import hpBarValue1to0F1 from "../assets/images/hero/hitpoints-bar/hpbar-value1to0-f1.png";
 import hpBarValue1to0F2 from "../assets/images/hero/hitpoints-bar/hpbar-value1to0-f2.png";
+import LevelIndicator from "../components/LevelIndicator.js";
+import levelIndicatorSpritesheet from "../assets/images/environment/levelIndicator-spritesheet.png";
 
 export default class LevelTwo extends Phaser.Scene {
   constructor() {
@@ -68,6 +70,9 @@ export default class LevelTwo extends Phaser.Scene {
     this.load.image("dmg2to1Frame2", hpBarValue2to1F2);
     this.load.image("dmg1To0Frame1", hpBarValue1to0F1);
     this.load.image("dmg1To0Frame2", hpBarValue1to0F2);
+
+    // Preload the Sprites for the LevelIndicator
+    this.load.spritesheet("levelIndicatorSheet", levelIndicatorSpritesheet, {frameWidth: 384, frameHeight: 192});
   }
 
   create() {
@@ -79,6 +84,9 @@ export default class LevelTwo extends Phaser.Scene {
 
     // Add the HealthBar to the scene
     this.hitpointsBar = new HealthBar (this, "threePointHpBar");
+
+    //Add the LevelIndicator to the Scene
+    this.levelCounter = new LevelIndicator (this, 2);
   }
 
   update() {
