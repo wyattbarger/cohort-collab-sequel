@@ -7,16 +7,20 @@ export default class LevelIndicator extends Phaser.GameObjects.Sprite {
     // Add a switch statement that will change the textureKey which the super sets as the Sprite's texture based on the level parameter passed to it
     switch (level) {
       case 1:
-        frameKey = "levelOneIndicSprite";
+        console.log("Level 1 selected");
+        frameKey = "0";
         break;
       case 2:
-        frameKey = "levelTwoIndicSprite";
+        console.log("Level 2 selected");
+        frameKey = "1";
         break;
       case 3:
-        frameKey = "levelThreeIndicSprite";
+        console.log("Level 3 selected");
+        frameKey = "2";
         break;
       default:
-        frameKey = "levelOneIndicSprite";
+        console.log("Default Frame selected");
+        frameKey = "0";
         break;
     };
     super(scene, 140, 0, "levelIndicatorSheet" ,frameKey);
