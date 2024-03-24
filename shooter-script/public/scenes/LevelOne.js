@@ -14,6 +14,9 @@ import defaultMissileF6 from "../assets/images/missiles/leveltwo/default-weapon/
 import defaultMissileF7 from "../assets/images/missiles/leveltwo/default-weapon/lvl2-defwep-missile-f7.png";
 import defaultMissileF8 from "../assets/images/missiles/leveltwo/default-weapon/lvl2-defwep-missile-f8.png";
 import skull2Sprite from "../assets/images/enemies/skull2Spritesheet.png";
+// Add the LevelIndicator assets
+import LevelIndicator from "../components/LevelIndicator.js";
+import levelIndicatorSpritesheet from "../assets/images/environment/levelIndicator-spritesheet.png";
 
 export default class LevelTwo extends Phaser.Scene {
   constructor() {
@@ -38,13 +41,17 @@ export default class LevelTwo extends Phaser.Scene {
     // this.load.image("skull2-3", flameAnim3);
     // this.load.image("skull2-4", flameAnim4);
     // this.load.image("skull2-5", flameAnim5);
+
+    // Preload the Spritesheet for the LevelIndicator
+    this.load.spritesheet("levelIndicatorSheet", levelIndicatorSpritesheet, {frameWidth: 384, frameHeight: 192});
   }
 
   create() {
     this.player = new Player(this, 400, 300, "playerSpriteImage");
     this.skull = new SkullEnemy(this, 100, 300, "skullSpriteImage");
     this.skull2 = new Skull2(this, 200, 300, "skull2");
-    
+    //Add the LevelIndicator to the Scene, passing the level to the constructor
+    this.levelCounter = new LevelIndicator (this, 1);
   }
 
 
