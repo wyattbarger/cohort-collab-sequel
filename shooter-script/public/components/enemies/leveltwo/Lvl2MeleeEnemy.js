@@ -34,13 +34,7 @@ export default class Lvl2MeleeEnemy extends Enemy {
     this.setCollideWorldBounds(true);
 
     // Add a collider between the hitbox and the Player's startingWeapon.projectiles
-    this.scene.physics.add.collider(
-        this.scene.player.startingWeapon.projectiles,
-        this.hitbox,
-        this.playerProjectileCollisionHandler,
-        null,
-        this, 
-     );
+    //TODO
   };
   // Add a function to deal one damage when hit by the starting weapon projectile
   playerProjectileCollisionHandler () {
