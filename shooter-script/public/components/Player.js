@@ -37,7 +37,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     // Track leftButtonDown input type
     scene.input.on("pointerdown", (pointer) => {
       if (pointer.leftButtonDown()) {
-        this.scene.playerShot.fire(pointer.x, pointer.y);
+        this.playerShot.fire(pointer.x, pointer.y);
       }
     });
 

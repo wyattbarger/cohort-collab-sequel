@@ -7,7 +7,17 @@ export default class PlayerProjectile extends Phaser.Physics.Arcade.Sprite {
     this.abilToFire = true;
     this.projectiles = scene.physics.add.group();
     this.initAnimations();
+    scene.physics.world.enable(this);
+    this.setCollideWorldBounds(true);
+    this.body.onWorldBounds = true;
+    // Define a header
+    this.gamePanel = scene.add.zone(640, 0, 1280, 155);
+    scene.physics.world.enable(this.gamePanel);
+    this.gamePanel.body.setAllowGravity(false);
+    this.gamePanel.body.moves = false;
   }
+
+  
   
   // Add initAnimations function to prevent a new animation from being created everytime fire() is hit
   initAnimations() {
@@ -72,5 +82,13 @@ export default class PlayerProjectile extends Phaser.Physics.Arcade.Sprite {
     const velocityY = Math.sin(angle) * speed;
 
     projectile.body.setVelocity(velocityX, velocityY);
+    this.scene.physics.world.on('worldbounds', (body) => {
+      if (body.gameObject === projectile) {
+        projectile.destroy();
+      }
+    });
+    this.scene.physics.add.overlap(projectile, this.gamePanel, (projectile) => {
+      projectile.destroy();
+    });
   };
 }
