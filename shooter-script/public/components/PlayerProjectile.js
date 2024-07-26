@@ -1,5 +1,6 @@
-export default class DefaultWeapon {
+export default class PlayerProjectile extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, player) {
+    super(scene, player.x, player.y, "firstProjectileSprite")
     this.scene = scene;
     this.player = player;
     this.fireRate = 750;

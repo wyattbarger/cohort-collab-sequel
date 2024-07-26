@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import DefaultWeapon from "./DefaultWeapon";
+import PlayerProjectile from "./PlayerProjectile";
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y) {
@@ -20,8 +20,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       right: Phaser.Input.Keyboard.KeyCodes.D,
     });
 
-    // Add the DefaultWeapon class to the Player, passing the scene and this Player class to the DefaultWeapons class constructor
-    this.startingWeapon = new DefaultWeapon(scene, this);
+    // Add a PlayerProjectile to the Player class specified by Scene
+    this.playerShot = new PlayerProjectile(scene, this);
 
     // Set a property of the Player class "hitpoints" to 3
     this.hitpoints = 3;
@@ -37,7 +37,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     // Track leftButtonDown input type
     scene.input.on("pointerdown", (pointer) => {
       if (pointer.leftButtonDown()) {
-        this.startingWeapon.fire(pointer.x, pointer.y);
+        this.scene.playerShot.fire(pointer.x, pointer.y);
       }
     });
 
