@@ -10,15 +10,13 @@ export default class PlayerProjectile extends Phaser.Physics.Arcade.Sprite {
     scene.physics.world.enable(this);
     this.setCollideWorldBounds(true);
     this.body.onWorldBounds = true;
-    // Define a header
+    // Define a header to destroy projectiles crossing the health bar, level indicator, and enemy counter.
     this.gamePanel = scene.add.zone(640, 0, 1280, 155);
     scene.physics.world.enable(this.gamePanel);
     this.gamePanel.body.setAllowGravity(false);
     this.gamePanel.body.moves = false;
   }
 
-  
-  
   // Add initAnimations function to prevent a new animation from being created everytime fire() is hit
   initAnimations() {
     if (!this.scene.anims.exists("projectileAnimation")) {
@@ -40,6 +38,7 @@ export default class PlayerProjectile extends Phaser.Physics.Arcade.Sprite {
     }
   }
 
+  // Add fire method to be trigger by the Player class
   fire = (atXCord, atYCord) => {
     if (!this.abilToFire) {
       return;
