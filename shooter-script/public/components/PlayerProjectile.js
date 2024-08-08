@@ -80,6 +80,7 @@ export default class PlayerProjectile extends Phaser.Physics.Arcade.Sprite {
     const velocityX = Math.cos(angle) * speed;
     const velocityY = Math.sin(angle) * speed;
 
+    // Apply the two velocities via setVelocity to the projectile's gameObject body
     projectile.body.setVelocity(velocityX, velocityY);
     
     // Collider for projectile and "gamePanel" section 
@@ -89,9 +90,8 @@ export default class PlayerProjectile extends Phaser.Physics.Arcade.Sprite {
     });
 
     // Collider for projectile and meleeEnemy 
-    // ** Will require refractor for generalized functionality **
-    this.scene.physics.add.overlap(projectile, this.scene.meleeEnemy, (projectile) => {
-      this.scene.meleeEnemy.takeDamage(1);
+    this.scene.physics.add.overlap(projectile, this.scene.enemies, (projectile,enemy) => {
+      enemy.takeDamage(1);
       projectile.destroy();
     });
   };

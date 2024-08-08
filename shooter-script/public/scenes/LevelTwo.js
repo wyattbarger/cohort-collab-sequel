@@ -82,6 +82,10 @@ export default class LevelTwo extends Phaser.Scene {
     // Add the Lvl2MeleeEnemy to the scene
     this.meleeEnemy = new Lvl2MeleeEnemy(this, 900, 600, "meleeEnemySprite");
 
+    // Create a group and add all scene enemies for Collider logic
+    this.enemies = this.physics.add.group();
+    this.enemies.add(this.meleeEnemy);
+
     // Add the HealthBar to the scene
     this.hitpointsBar = new HealthBar (this, "threePointHpBar");
 
