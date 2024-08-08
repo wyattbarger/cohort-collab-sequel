@@ -81,12 +81,17 @@ export default class PlayerProjectile extends Phaser.Physics.Arcade.Sprite {
     const velocityY = Math.sin(angle) * speed;
 
     projectile.body.setVelocity(velocityX, velocityY);
-    this.scene.physics.world.on('worldbounds', (body) => {
-      if (body.gameObject === projectile) {
-        projectile.destroy();
-      }
-    });
+    
+    // Collider for projectile and "gamePanel" section 
+    // (levelCounter | hitpointsBar | mobCounter)
     this.scene.physics.add.overlap(projectile, this.gamePanel, (projectile) => {
+      projectile.destroy();
+    });
+
+    // Collider for projectile and meleeEnemy 
+    // ** Will require refractor for generalized functionality **
+    this.scene.physics.add.overlap(projectile, this.scene.meleeEnemy, (projectile) => {
+      this.scene.meleeEnemy.takeDamage(1);
       projectile.destroy();
     });
   };
