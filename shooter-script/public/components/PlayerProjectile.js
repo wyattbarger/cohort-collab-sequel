@@ -1,13 +1,22 @@
-export default class DefaultWeapon {
+export default class PlayerProjectile extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, player) {
+    super(scene, player.x, player.y, "firstProjectileSprite")
     this.scene = scene;
     this.player = player;
     this.fireRate = 750;
     this.abilToFire = true;
     this.projectiles = scene.physics.add.group();
     this.initAnimations();
+    scene.physics.world.enable(this);
+    this.setCollideWorldBounds(true);
+    this.body.onWorldBounds = true;
+    // Define a header to destroy projectiles crossing the health bar, level indicator, and enemy counter.
+    this.gamePanel = scene.add.zone(640, 0, 1280, 155);
+    scene.physics.world.enable(this.gamePanel);
+    this.gamePanel.body.setAllowGravity(false);
+    this.gamePanel.body.moves = false;
   }
-  
+
   // Add initAnimations function to prevent a new animation from being created everytime fire() is hit
   initAnimations() {
     if (!this.scene.anims.exists("projectileAnimation")) {
@@ -29,6 +38,7 @@ export default class DefaultWeapon {
     }
   }
 
+  // Add fire method to be trigger by the Player class
   fire = (atXCord, atYCord) => {
     if (!this.abilToFire) {
       return;
@@ -70,6 +80,19 @@ export default class DefaultWeapon {
     const velocityX = Math.cos(angle) * speed;
     const velocityY = Math.sin(angle) * speed;
 
+    // Apply the two velocities via setVelocity to the projectile's gameObject body
     projectile.body.setVelocity(velocityX, velocityY);
+    
+    // Collider for projectile and "gamePanel" section 
+    // (levelCounter | hitpointsBar | mobCounter)
+    this.scene.physics.add.overlap(projectile, this.gamePanel, (projectile) => {
+      projectile.destroy();
+    });
+
+    // Collider for projectile and meleeEnemy 
+    this.scene.physics.add.overlap(projectile, this.scene.enemies, (projectile,enemy) => {
+      enemy.takeDamage(1);
+      projectile.destroy();
+    });
   };
 }
